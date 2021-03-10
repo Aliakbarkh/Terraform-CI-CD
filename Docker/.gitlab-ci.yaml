@@ -1,0 +1,27 @@
+stages:
+  - deploy
+
+before_script:
+  - mkdir -p ~/.ssh
+  - echo "$key" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - ssh-keyscan -H $IP >> ~/.ssh/known_hosts
+  - ssh-add ~/.ssh/id_rsa
+
+
+deploy:
+  stage: deploy
+  tags:
+    - gitlab-org
+  script:
+    - pwd
+    - ssh -i  ~/.ssh/id_rsa $user@$IP 'sudo git pull'
+    - ssh -i  ~/.ssh/id_rsa $user@$IP 'docker container rm -f static-web || true'
+    - ssh -i  ~/.ssh/id_rsa $user@$IP 'docker build -t static-web .'
+    - ssh -i  ~/.ssh/id_rsa $user@$IP'docker run -dp 80:80 static-web'
+
+  environment:
+    name: production
+  only:
+    - main
