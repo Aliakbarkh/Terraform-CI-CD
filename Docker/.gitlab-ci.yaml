@@ -22,6 +22,6 @@ deploy:
     - ssh -i  ~/.ssh/id_rsa $user@$IP'docker run -dp 80:80 static-web'
 
   environment:
-    name: production
+    name: development
   only:
     - main
