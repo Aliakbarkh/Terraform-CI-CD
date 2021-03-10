@@ -19,7 +19,7 @@ deploy:
     - ssh -i  ~/.ssh/id_rsa $user@$IP 'sudo git pull'
     - ssh -i  ~/.ssh/id_rsa $user@$IP 'docker container rm -f static-web || true'
     - ssh -i  ~/.ssh/id_rsa $user@$IP 'docker build -t static-web .'
-    - ssh -i  ~/.ssh/id_rsa $user@$IP'docker run -dp 80:80 static-web'
+    - ssh -i  ~/.ssh/id_rsa $user@$IP 'docker run -dp 80:80 static-web'
 
   environment:
     name: development
