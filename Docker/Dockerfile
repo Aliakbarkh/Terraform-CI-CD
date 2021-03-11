@@ -1,2 +1,2 @@
 FROM nginx:alpine
-COPY hello.txt /var/www
+COPY hello.txt /var/www/
