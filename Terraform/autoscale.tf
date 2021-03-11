@@ -1,7 +1,7 @@
 data "aws_availability_zones" "available" {}
 
 resource "aws_autoscaling_group" "main" {
-  name_prefix = "example"
+  name_prefix = "main"
 
   launch_configuration = aws_instance.main.id
   availability_zones   = [data.aws_availability_zones.available.names[0]]
