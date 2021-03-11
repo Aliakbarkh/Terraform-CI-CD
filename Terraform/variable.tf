@@ -9,3 +9,11 @@ variable "ami" {
 variable "instance" {
   default = "t2.medium"
 }
+
+variable "access" {
+  default = "MY_ACCESS_KEY"
+}
+
+variable "secret" {
+  default = "MY_SECRET_KEY"
+}

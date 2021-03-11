@@ -10,6 +10,8 @@ terraform {
 provider "aws" {
   profile = "default"
   region  = var.region
+  access_key = var.access
+  secret_key = var.secret
 }
 
 resource "aws_instance" "main" {
